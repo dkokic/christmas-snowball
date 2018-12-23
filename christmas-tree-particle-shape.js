@@ -19,11 +19,12 @@ window.onload = function() {
 
 };
 
-SYSTEM = function() {
+
+SYSTEM = function () {
   var cnv = document.getElementById('canvas');
   var ctx = cnv.getContext('2d');
 
-  var Parent = function(childQuant, radius, xPos, yPos) {
+  var Parent = function (childQuant, radius, xPos, yPos) {
     this.radius   = radius;
     this.xPos     = xPos;
     this.yPos     = yPos;
@@ -44,80 +45,74 @@ SYSTEM = function() {
       //treee
       [0, -150],
       [-25, -125], [0, -125], [25, -125],
-      [-50, -100],[-25, -100], [0, -100], [25, -100], [50, -100],
-      [-50, -75, [-50, -100]],[-25, -75], [0, -75], [25, -75], [50, -75, [50, -100]],
+      [-50, -100], [-25, -100], [0, -100], [25, -100], [50, -100],
+      [-50, -75, [-50, -100]], [-25, -75], [0, -75], [25, -75], [50, -75, [50, -100]],
       [-75, -50], [-50, -50], [-25, -50], [0, -50], [25, -50], [50, -50], [75, -50],
-      [-75, -25, [-75, -50]],[-50, -25],[-25, -25], [0, -25], [25, -25], [50, -25], [75, -25, [75, -50]],
-      [-100, 0],[-75, 0],[-50, 0],[-25, 0], [0, 0], [25, 0], [50, 0], [75, 0], [100, 0],
-      [-100, 25, [-100, 0]],[-75, 25],[-50, 25],[-25, 25], [0, 25], [25, 25], [50, 25], [75, 25], [100, 25, [100, 0]],
-      [-125, 50], [-100, 50],[-75, 50],[-50, 50],[-25, 50], [0, 50], [25, 50], [50, 50], [75, 50], [100, 50], [125, 50],
+      [-75, -25, [-75, -50]], [-50, -25], [-25, -25], [0, -25], [25, -25], [50, -25], [75, -25, [75, -50]],
+      [-100, 0], [-75, 0], [-50, 0], [-25, 0], [0, 0], [25, 0], [50, 0], [75, 0], [100, 0],
+      [-100, 25, [-100, 0]], [-75, 25], [-50, 25], [-25, 25], [0, 25], [25, 25], [50, 25], [75, 25], [100, 25, [100, 0]],
+      [-125, 50], [-100, 50], [-75, 50], [-50, 50], [-25, 50], [0, 50], [25, 50], [50, 50], [75, 50], [100, 50], [125, 50],
       [0, 75, [[-25, 105], [-15, 105], [25, 105]]]
 
     ];
 
 
-    this.born = function() {
-      var maxVelocity = 2.5,
-          angle,
-          velocity,
-          velAngle,
-          distFromCenter,
-          xPos,
-          yPos;
+    this.born = function () {
+      var maxVelocity = 2.5;
 
-      for(var i = childQuant; i > 0; i -= 1) {
-        angle          = Math.random() * 2*Math.PI;
-        velocity       = maxVelocity * (0.3 + 0.7 * Math.random());
-        velAngle       = Math.random() * 2*Math.PI;
-        distFromCenter = Math.random() * this.radius;
+      for (var i = 0; i < childQuant; i++) {
+        var angle          = Math.random() * 2 * Math.PI;
+        var velocity       = maxVelocity * (0.3 + 0.7 * Math.random());
+        var velAngle       = Math.random() * 2 * Math.PI;
+        var distFromCenter = Math.random() * this.radius;
 
-        xPos = (distFromCenter - Child.prototype.RADIUS) * Math.cos(angle);
-        yPos = (distFromCenter - Child.prototype.RADIUS) * Math.sin(angle);
-        velX = velocity * Math.cos(velAngle);
-        velY = velocity * Math.sin(velAngle);
+        var xPos = (distFromCenter - Child.prototype.RADIUS) * Math.cos(angle);
+        var yPos = (distFromCenter - Child.prototype.RADIUS) * Math.sin(angle);
+        var velX = velocity * Math.cos(velAngle);
+        var velY = velocity * Math.sin(velAngle);
 
         this.children.push(new Child(xPos, yPos, velX, velY));
       }
     };
 
+
     this.drawChildren = function() {
       var color,
           shapes = ParentParticle.shapeCoords.length - 1;
 
-      for(var i = this.children.length - 1; i >= 0; i -= 1) {
-        if(i === shapes) {
+      for (var i = this.children.length - 1; i >= 0; i -= 1) {
+        if (i === shapes) {
           color = ParentParticle.isActive ? 'brown' : 'rgb(190,190,190)';
-        } else if(i < shapes && i > shapes - 21) {
+        } else if (i < shapes && i > shapes - 21) {
           color = ParentParticle.isActive ? '#304c02' : 'rgb(190,190,190)';
-        } else if(i < shapes - 20 && i > shapes - 37){
+        } else if (i < shapes - 20 && i > shapes - 37) {
           color = ParentParticle.isActive ? '#547b01' : 'rgb(190,190,190)';
-        } else if(i < shapes - 36 && i > shapes - 49){
+        } else if (i < shapes - 36 && i > shapes - 49) {
           color = ParentParticle.isActive ? '#90a900' : 'rgb(190,190,190)';
-        } else if(i < shapes - 48 && i > shapes - 58) {
+        } else if (i < shapes - 48 && i > shapes - 58) {
           color = ParentParticle.isActive ? '#b9c21d' : 'rgb(190,190,190)';
-        } else if(i < shapes - 57){
+        } else if (i < shapes - 57) {
           color = ParentParticle.isActive ? 'brown' : 'rgb(190,190,190)';
           this.children[i].noCon = true;
           this.children[i].RADIUS = 2;
-
         } else {
           color = false;
         }
-        this.draw(this.children[i].xPos + this.xPos, this.children[i].yPos + this.yPos, this.children[i].RADIUS,
-                    ParentParticle.isActive ? (color ? color : 'rgba(190, 190, 190, 0.1)') : 'rgba(190, 190, 190, 0.8)' );
+        var drawColor = ParentParticle.isActive ? (color ? color : 'rgba(190, 190, 190, 0.1)') : 'rgba(190, 190, 190, 0.8)';
+        this.draw(this.children[i].xPos + this.xPos, this.children[i].yPos + this.yPos, this.children[i].RADIUS, drawColor);  // TODO check the behaviour without drawColor !!!
 
-        for(var j = i - 1; j >= 0; j -= 1) {
+        for (var j = 0; j < i; j++) {
 
-          if(!this.children[i].noCon) {
+          if (!this.children[i].noCon) {
             this.drawDistance(this.children[i].xPos, this.children[i].yPos,
                               this.children[j].xPos, this.children[j].yPos, color);
 
-          } else if(typeof this.children[i].noCon === 'boolean') {
+          } else if (typeof this.children[i].noCon === 'boolean') {
             this.drawDistance(this.children[i].xPos, this.children[i].yPos,
                               this.children[j].xPos, this.children[j].yPos, false, 1);
 
-          } else if(!(Math.round(this.children[j].xPos) === this.children[i].noCon[0] &&
-                      Math.round(this.children[j].yPos) === this.children[i].noCon[1])) {
+          } else if (!(Math.round(this.children[j].xPos) === this.children[i].noCon[0] &&
+                       Math.round(this.children[j].yPos) === this.children[i].noCon[1])) {
             this.drawDistance(this.children[i].xPos, this.children[i].yPos,
                               this.children[j].xPos, this.children[j].yPos, color);
           }
@@ -126,7 +121,8 @@ SYSTEM = function() {
       }
     };
 
-    this.draw = function(x, y, rad, color) {
+
+    this.draw = function (x, y, rad, color) {
       ctx.fillStyle = color;
       ctx.beginPath();
       ctx.arc( x, y, rad, 0, Math.PI*2, true );
@@ -134,7 +130,8 @@ SYSTEM = function() {
       ctx.closePath();
     };
 
-    this.drawDistance = function(x1, y1, x2, y2, color, minDist) {
+
+    this.drawDistance = function (x1, y1, x2, y2, color, minDist) {
       var dist,
           minimDist = minDist ? minDist : this.minDist,
           dx = x1 - x2,
@@ -142,12 +139,12 @@ SYSTEM = function() {
 
       dist = Math.sqrt(dx * dx + dy * dy);
 
-      if(dist <= minimDist) {
+      if (dist <= minimDist) {
         //draw the line
 
         ctx.beginPath();
         // ctx.strokeStyle = "rgba(111, 112, 39,"+ (1.2-dist / this.minDist) +")";
-        if(ParentParticle.isActive && color) {
+        if (ParentParticle.isActive && color) {
           ctx.strokeStyle = color;
         } else {
           ctx.strokeStyle = "rgba(100, 100, 100,"+ (1.2 - dist / this.minDist) +")";
@@ -160,51 +157,40 @@ SYSTEM = function() {
 
     };
 
-    this.updateChildren = function() {
-      var currChild,
-          lastXPos,
-          lastYPos,
-          exitX,
-          exitY,
-          radSquare,
-          parentRadSquare = this.radius * this.radius,
-          twiceProjFactor,
+
+    this.updateChildren = function () {
+      var parentRadSquare = this.radius * this.radius,
 
           sound = document.getElementById('soundHandle'),
-          colPointAngle,
-          velStats;
+          colPointAngle;
 
-      for(var i = this.children.length - 1; i >= 0; i -= 1) {
-        currChild = this.children[i];
-
-        radSquare = currChild.xPos * currChild.xPos + currChild.yPos * currChild.yPos;
-
-        if(ParentParticle.isActive && currChild.targetPos) {
-          velStats = getVelocity({x:currChild.xPos, y:currChild.yPos}, currChild.targetPos);
+      for (var currChild of this.children) {
+        if (ParentParticle.isActive && currChild.targetPos) {
+          var velStats = getVelocity({ x: currChild.xPos, y: currChild.yPos }, currChild.targetPos);
           currChild.velX = velStats._velX;
           currChild.velY = velStats._velY;
-        } else if(currChild.velX === 0 && currChild.velY === 0) {
+        } else if (currChild.velX === 0 && currChild.velY === 0) {
           currChild.velX = Math.random() * 3;
           currChild.velY = Math.random() * 3;
           currChild.velX = Math.round(currChild.velX, 2) % 2 === 0 ? currChild.velX : -currChild.velX;
         }
 
-        lastXPos = currChild.xPos;
-        lastYPos = currChild.yPos;
+        var radSquare = currChild.xPos * currChild.xPos + currChild.yPos * currChild.yPos;
 
+        if (radSquare > parentRadSquare) {
+          var lastXPos = currChild.xPos;
+          var lastYPos = currChild.yPos;
+          var exitX = (lastXPos + currChild.xPos) / 2;
+          var exitY = (lastYPos + currChild.yPos) / 2;
 
-        if(radSquare > parentRadSquare) {
-          exitX = (lastXPos + currChild.xPos) / 2;
-          exitY = (lastYPos + currChild.yPos) / 2;
-
-          exitRad = Math.sqrt(exitX * exitX + exitY * exitY);
+          var exitRad = Math.sqrt(exitX * exitX + exitY * exitY);
           exitX   *= this.radius / exitRad;
           exitY   *= this.radius / exitRad;
 
           currChild.xPos = exitX;
           currChild.yPos = exitY;
 
-          twiceProjFactor = 2*(exitX*currChild.velX + exitY*currChild.velY) / parentRadSquare;
+          var twiceProjFactor = 2 * (exitX * currChild.velX + exitY * currChild.velY) / parentRadSquare;
           currChild.velX  -= twiceProjFactor * exitX;
           currChild.velY  -= twiceProjFactor * exitY;
         }
@@ -217,17 +203,17 @@ SYSTEM = function() {
   };
 
 
-  function getVelocity(currCoord, targCoord) {
+  function getVelocity (currCoord, targCoord) {
     var xDist = (Math.max(currCoord.x, targCoord.x) + 200) - (Math.min(currCoord.x, targCoord.x) + 200);
     var yDist = (Math.max(currCoord.y, targCoord.y) + 200) - (Math.min(currCoord.y, targCoord.y) + 200);
     if(currCoord.x > targCoord.x) {
       xDist = -xDist;
     }
-    if(currCoord.y > targCoord.y) {
+    if (currCoord.y > targCoord.y) {
       yDist = -yDist;
     }
 
-    if(Math.sqrt(xDist * xDist + yDist * yDist) > 0.1) {
+    if (Math.sqrt(xDist * xDist + yDist * yDist) > 0.1) {
       return {
         _velX: xDist / 15,
         _velY: yDist / 15
@@ -240,24 +226,23 @@ SYSTEM = function() {
     }
   }
 
-  var Child = function(xPos, yPos, velX, velY) {
+  var Child = function (xPos, yPos, velX, velY) {
     this.xPos   = Math.round(xPos);
     this.yPos   = Math.round(yPos);
     this.velX   = velX;
     this.velY   = velY;
-
-
   };
 
   Child.prototype = {
     RADIUS: 3
   };
 
+
   var ParentParticle = new Parent(120, 200, cnv.width / 2, cnv.height / 2);
   ParentParticle.born();
 
 
-  var calculateMousePos = function(evt) {
+  var calculateMousePos = function (evt) {
     var rect = cnv.getBoundingClientRect();
     var root = document.documentElement;
     var mouseX = evt.clientX - rect.left - root.scrollLeft;
@@ -267,60 +252,59 @@ SYSTEM = function() {
       x: mouseX,
       y: mouseY
     };
-
   };
 
-  cnv.addEventListener('mousemove',
-    function(evt) {
-      var mousePos = calculateMousePos(evt);
-      var x0, y0, mouseToCenterDist;
-      var list =  ParentParticle.children.length;
-      var coordList = ParentParticle.shapeCoords.length;
+  var mouseMoveListener = function (evt) {
+    var mousePos = calculateMousePos(evt);
+    var x0, y0, mouseToCenterDist;
+    var list =  ParentParticle.children.length;
+    var coordList = ParentParticle.shapeCoords.length;
 
-      x0 = ParentParticle.xPos - mousePos.x;
-      y0 = ParentParticle.yPos - mousePos.y;
+    x0 = ParentParticle.xPos - mousePos.x;
+    y0 = ParentParticle.yPos - mousePos.y;
 
-      mouseToCenterDist = Math.sqrt(x0 * x0 + y0 * y0);
+    mouseToCenterDist = Math.sqrt(x0 * x0 + y0 * y0);
 
-      if(mouseToCenterDist < ParentParticle.radius && !ParentParticle.isActive) {
+    if (mouseToCenterDist < ParentParticle.radius && !ParentParticle.isActive) {
 
-        ParentParticle.isActive = true;
+      ParentParticle.isActive = true;
 
-        for(var i = 0; i < coordList; i++) {
-          if(typeof ParentParticle.shapeCoords[i][ParentParticle.shapeCoords[i].length - 1] === 'object') {
-            ParentParticle.children[i].noCon = ParentParticle.shapeCoords[i][ParentParticle.shapeCoords[i].length - 1];
-          }
-          if( i < 59) {
-            ParentParticle.children[i].targetPos = {
-              x: ParentParticle.shapeCoords[i][0] / 1.8,
-              y: ParentParticle.shapeCoords[i][1] / 1.8 + 60
-            };
-          } else {
-            ParentParticle.children[i].targetPos = {
-              x: ParentParticle.shapeCoords[i][0],
-              y: ParentParticle.shapeCoords[i][1]
-            };
-          }
+      for (var i = 0; i < coordList; i++) {
+        if (typeof ParentParticle.shapeCoords[i][ParentParticle.shapeCoords[i].length - 1] === 'object') {
+          ParentParticle.children[i].noCon = ParentParticle.shapeCoords[i][ParentParticle.shapeCoords[i].length - 1];
         }
-      } else if(mouseToCenterDist > ParentParticle.radius && ParentParticle.isActive){
-        ParentParticle.isActive = false;
-        for(var j = list - 1; j >= 0; j -= 1) {
-          ParentParticle.children[j].targetPos = undefined;
+        if (i < 59) {
+          ParentParticle.children[i].targetPos = {
+            x: ParentParticle.shapeCoords[i][0] / 1.8,
+            y: ParentParticle.shapeCoords[i][1] / 1.8 + 60
+          };
+        } else {
+          ParentParticle.children[i].targetPos = {
+            x: ParentParticle.shapeCoords[i][0],
+            y: ParentParticle.shapeCoords[i][1]
+          };
         }
       }
+    } else if (mouseToCenterDist > ParentParticle.radius && ParentParticle.isActive){
+      ParentParticle.isActive = false;
+      for (var j = list - 1; j >= 0; j -= 1) {
+        ParentParticle.children[j].targetPos = undefined;
+      }
     }
-  );
-
-  var totalUpdate = function() {
-    ctx.clearRect(0,0,cnv.width,cnv.height);
-    ParentParticle.draw(ParentParticle.xPos, ParentParticle.yPos, ParentParticle.radius + ParentParticle.children[0].RADIUS, '#232323');
-
-    ParentParticle.updateChildren();
-    ParentParticle.drawChildren();
   };
 
+  cnv.addEventListener('mousemove', mouseMoveListener);
+
+  var totalUpdate = function() {
+    ctx.clearRect(0, 0, cnv.width, cnv.height);
+    this.draw(this.xPos, this.yPos, this.radius + this.children[0].RADIUS, '#232323');
+    this.updateChildren();
+    this.drawChildren();
+  }
+
+
   return {
-    totalUpdate: totalUpdate
+    totalUpdate: totalUpdate.bind(ParentParticle)
   };
 
 }();

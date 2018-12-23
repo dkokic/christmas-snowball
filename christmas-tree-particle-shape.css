@@ -4,9 +4,9 @@ html, body {
 }
 
 body {
-	padding: 0;
-	margin: 0;
-	background-image: url('https://s27.postimg.org/4qqja3f8j/backgr.jpg');
+  padding: 0;
+  margin: 0;
+  background-image: url('https://s27.postimg.org/4qqja3f8j/backgr.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -14,11 +14,11 @@ body {
 
 
 #canvas {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	display: block;
-	margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  margin: auto;
 }
