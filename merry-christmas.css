@@ -1,0 +1,67 @@
+
+body {
+  background: #000;
+}
+
+.window {
+  width: 400px;
+  height: 400px;
+  background: #a0d5d3;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  margin-top: -60px;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border: 10px solid #f8e7dc;
+  overflow: hidden;
+}
+
+
+
+@font-face {
+  font-family: 'Mountains of Christmas';
+  font-style: normal;
+  src: local("Mountains of Christmas"), local("MountainsofChristmas-Regular"), url(https://fonts.gstatic.com/s/mountainsofchristmas/v8/dVGBFPwd6G44IWDbQtPewylJhLDHyIrT3I5b5eGTHmw.woff2) format("woff2");
+}
+
+.message {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: 120px;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+  color: #f8e7dc;
+  font-family: 'Mountains of Christmas';
+}
+
+.message h1 {
+  font-style: normal;
+  font-size: 3.5em;
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+.message h2 {
+  margin: 0;
+  /*font-size: 20px;*/
+  text-align: center;
+  white-space: nowrap;
+}
+
+.message h2 a {
+  color: #f7be10;
+  opacity: 0.8;
+}
+
+.message h2 a:hover {
+  opacity: 1;
+}
