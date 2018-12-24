@@ -4,6 +4,7 @@ var CACHE_NAME = [APP_NAME, VERSION].join('/')
 var URLS = [                            // Add URL you want to cache in this list.
   '/christmas-snowball/',               // If you have separate JS/CSS files,
   '/christmas-snowball/index.html',     // add path to those files here
+  '/christmas-snowball/icons/icon-152x152.png',
   '/christmas-snowball/christmas-tree-particle-shape.js',
   '/christmas-snowball/christmas-tree-particle-shape.css',
   '/christmas-snowball/merry-christmas.css',
