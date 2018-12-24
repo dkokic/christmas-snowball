@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="canonical" href="https://dkokic.github.io/christmas-snowball/" />
     <title>Christmas Snowball</title>
     <link rel="stylesheet" type="text/css" href="merry-christmas.css"/>
     <link rel="stylesheet" type="text/css" href="christmas-tree-particle-shape.css"/>
@@ -16,6 +17,11 @@
         <h1>Merry Christmas!</h1>
         <h2 class="copyright">Season’s greetings to everyone</h2>
     </div>
+    <script>
+      if (navigator.serviceWorker) {
+        navigator.serviceWorker.register('/christmas-snowball/service-worker.js', { scope: '/christmas-snowball/' })
+      }
+    </script>
     <script type="text/javascript" src="christmas-tree-particle-shape.js"></script>
 </body>
 </html>
