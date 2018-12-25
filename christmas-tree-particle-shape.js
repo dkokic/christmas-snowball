@@ -15,7 +15,7 @@ window.onload = function() {
     SYSTEM.totalUpdate();
     requestAnimFrame(animloop);
   }
-  animloop();
+  setTimeout(() => { document.body.style.backgroundColor = "black"; animloop() }, 10000);
 
 };
 
