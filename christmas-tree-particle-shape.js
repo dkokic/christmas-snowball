@@ -254,42 +254,43 @@ SYSTEM = function () {
     };
   };
 
+  var activate = function () {
+    ParentParticle.isActive = true;
+    for (var i = 0; i < ParentParticle.shapeCoords.length; i++) {
+      if (typeof ParentParticle.shapeCoords[i][ParentParticle.shapeCoords[i].length - 1] === 'object') {
+        ParentParticle.children[i].noCon = ParentParticle.shapeCoords[i][ParentParticle.shapeCoords[i].length - 1];
+      }
+      if (i < 61) {
+        ParentParticle.children[i].targetPos = {
+          x: ParentParticle.shapeCoords[i][0] / 1.8,
+          y: ParentParticle.shapeCoords[i][1] / 1.8 + 60
+        };
+      } else {
+        ParentParticle.children[i].targetPos = {
+          x: ParentParticle.shapeCoords[i][0],
+          y: ParentParticle.shapeCoords[i][1]
+        };
+      }
+    }
+  };
+
+  var deactivate = function () {
+    ParentParticle.isActive = false;
+    for (var i = 0; i < ParentParticle.children.length; i++) {
+      ParentParticle.children[i].targetPos = undefined;
+    }
+  };
+
   var mouseMoveListener = function (evt) {
     var mousePos = calculateMousePos(evt);
-    var x0, y0, mouseToCenterDist;
-    var list =  ParentParticle.children.length;
-    var coordList = ParentParticle.shapeCoords.length;
-
-    x0 = ParentParticle.xPos - mousePos.x;
-    y0 = ParentParticle.yPos - mousePos.y;
-
-    mouseToCenterDist = Math.sqrt(x0 * x0 + y0 * y0);
+    var x0 = ParentParticle.xPos - mousePos.x;
+    var y0 = ParentParticle.yPos - mousePos.y;
+    var mouseToCenterDist = Math.sqrt(x0 * x0 + y0 * y0);
 
     if (mouseToCenterDist < ParentParticle.radius && !ParentParticle.isActive) {
-
-      ParentParticle.isActive = true;
-
-      for (var i = 0; i < coordList; i++) {
-        if (typeof ParentParticle.shapeCoords[i][ParentParticle.shapeCoords[i].length - 1] === 'object') {
-          ParentParticle.children[i].noCon = ParentParticle.shapeCoords[i][ParentParticle.shapeCoords[i].length - 1];
-        }
-        if (i < 61) {
-          ParentParticle.children[i].targetPos = {
-            x: ParentParticle.shapeCoords[i][0] / 1.8,
-            y: ParentParticle.shapeCoords[i][1] / 1.8 + 60
-          };
-        } else {
-          ParentParticle.children[i].targetPos = {
-            x: ParentParticle.shapeCoords[i][0],
-            y: ParentParticle.shapeCoords[i][1]
-          };
-        }
-      }
+      activate();
     } else if (mouseToCenterDist > ParentParticle.radius && ParentParticle.isActive){
-      ParentParticle.isActive = false;
-      for (var j = list - 1; j >= 0; j -= 1) {
-        ParentParticle.children[j].targetPos = undefined;
-      }
+      deactivate();
     }
   };
 
