@@ -16,6 +16,7 @@ window.onload = function() {
     requestAnimFrame(animloop);
   }
   setTimeout(() => { document.body.style.backgroundColor = "black"; animloop() }, 10000);
+  setInterval(() => { SYSTEM.activate(); setTimeout(SYSTEM.deactivate, 7000) }, 60000);
 
 };
 
@@ -305,6 +306,8 @@ SYSTEM = function () {
 
 
   return {
+    activate: activate,
+    deactivate: deactivate,
     totalUpdate: totalUpdate.bind(ParentParticle)
   };
 
