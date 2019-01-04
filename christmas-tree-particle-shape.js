@@ -297,7 +297,7 @@ SYSTEM = function () {
 
   var totalUpdate = function() {
     ctx.clearRect(0, 0, cnv.width, cnv.height);
-    this.draw(this.xPos, this.yPos, this.radius + this.children[0].RADIUS, '#232323');
+    this.draw(this.xPos, this.yPos, this.radius, '#232323');
     this.updateChildren();
     this.drawChildren();
   }
