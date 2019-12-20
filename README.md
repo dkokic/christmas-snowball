@@ -15,6 +15,7 @@ Useful sources:
 - https://gist.github.com/kosamari/7c5d1e8449b2fbc97d372675f16b566e
 
 - https://alexjover.com/blog/how-i-made-a-progressive-web-app-out-of-my-blog/
+- https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/
 
 - https://deanhume.com/displaying-a-new-version-available-progressive-web-app/
 - https://github.com/deanhume/pwa-update-available
