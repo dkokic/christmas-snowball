@@ -1,5 +1,5 @@
 var APP_NAME = 'Christmas-Snowball'     // Identifier for this app (this needs to be consistent across every cache update)
-var VERSION = '1.0'                     // Version of the off-line cache (change this value everytime you want to update cache)
+var VERSION = '2.0'                     // Version of the off-line cache (change this value everytime you want to update cache)
 var CACHE_NAME = [APP_NAME, VERSION].join('/')
 var URLS = [                            // Add URL you want to cache in this list.
   '/christmas-snowball/',               // If you have separate JS/CSS files,
