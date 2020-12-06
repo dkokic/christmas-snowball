@@ -79,31 +79,31 @@ SYSTEM = function () {
 
     this.drawChildren = function() {
       var color,
-          shapes = ParentParticle.shapeCoords.length - 1;
+          shapeNo = ParentParticle.shapeCoords.length;
 
-      for (var i = this.children.length - 1; i >= 0; i -= 1) {
-        if (i === shapes) {
-          color = ParentParticle.isActive ? 'brown' : 'rgb(190,190,190)';
-        } else if (i < shapes && i > shapes - 21) {
-          color = ParentParticle.isActive ? '#304c02' : 'rgb(190,190,190)';
-        } else if (i < shapes - 20 && i > shapes - 37) {
-          color = ParentParticle.isActive ? '#547b01' : 'rgb(190,190,190)';
-        } else if (i < shapes - 36 && i > shapes - 49) {
-          color = ParentParticle.isActive ? '#90a900' : 'rgb(190,190,190)';
-        } else if (i < shapes - 48 && i > shapes - 58) {
-          color = ParentParticle.isActive ? '#b9c21d' : 'rgb(190,190,190)';
-        } else if (i < shapes - 57) {
-          color = ParentParticle.isActive ? 'brown' : 'rgb(190,190,190)';
+      for (var i = 0; i < this.children.length; i++) {
+        if (i === shapeNo - 1) {
+          color = 'brown';
+        } else if (i < shapeNo - 58) {
+          color = 'brown';
           this.children[i].noCon = true;
           this.children[i].RADIUS = 2;
+        } else if (i < shapeNo - 49) {
+          color = '#b9c21d';
+        } else if (i < shapeNo - 37) {
+          color = '#90a900';
+        } else if (i < shapeNo - 21) {
+          color = '#547b01';
+        } else if (i < shapeNo - 1) {
+          color = '#304c02';
         } else {
           color = false;
         }
+
         var drawColor = ParentParticle.isActive ? (color ? color : 'rgba(190, 190, 190, 0.1)') : 'rgba(190, 190, 190, 0.8)';
         this.draw(this.children[i].xPos + this.xPos, this.children[i].yPos + this.yPos, this.children[i].RADIUS, drawColor);  // TODO check the behaviour without drawColor !!!
 
         for (var j = 0; j < i; j++) {
-
           if (!this.children[i].noCon) {
             this.drawDistance(this.children[i].xPos, this.children[i].yPos,
                               this.children[j].xPos, this.children[j].yPos, color);
@@ -118,7 +118,6 @@ SYSTEM = function () {
                               this.children[j].xPos, this.children[j].yPos, color);
           }
         }
-
       }
     };
 
@@ -205,16 +204,10 @@ SYSTEM = function () {
 
 
   function getVelocity (currCoord, targCoord) {
-    var xDist = (Math.max(currCoord.x, targCoord.x) + 200) - (Math.min(currCoord.x, targCoord.x) + 200);
-    var yDist = (Math.max(currCoord.y, targCoord.y) + 200) - (Math.min(currCoord.y, targCoord.y) + 200);
-    if(currCoord.x > targCoord.x) {
-      xDist = -xDist;
-    }
-    if (currCoord.y > targCoord.y) {
-      yDist = -yDist;
-    }
+    var xDist = targCoord.x - currCoord.x;
+    var yDist = targCoord.y - currCoord.y;
 
-    if (Math.sqrt(xDist * xDist + yDist * yDist) > 0.1) {
+    if (xDist * xDist + yDist * yDist > 0.01) {
       return {
         _velX: xDist / 15,
         _velY: yDist / 15
