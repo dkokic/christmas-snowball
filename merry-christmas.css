@@ -8,8 +8,8 @@ body {
 }
 
 .window {
-  width: 400px;
-  height: 400px;
+  width: 340px;
+  height: 340px;
   background: #a0d5d3;
   position: absolute;
   top: 50%;
@@ -21,7 +21,7 @@ body {
   -ms-transform: translate(-50%, -50%);
   -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  border: 10px solid #f8e7dc;
+  border: 5px solid #f8e7dc;
   overflow: hidden;
 }
 
