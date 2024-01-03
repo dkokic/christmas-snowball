@@ -61,3 +61,11 @@ self.addEventListener('fetch', function (e) {
     })
   )
 })
+
+// What about an update?
+self.addEventListener('updatefound', function (e) {
+  console.log('updatefound :', e, self.installing)
+  self.installing.addEventListener('statechange', (e) => {
+    console.log('statechange :', e, self.installing.state)
+  })
+})
