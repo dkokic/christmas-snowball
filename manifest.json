@@ -49,5 +49,26 @@
       "type": "image/png"
     }
   ],
+  "screenshots" : [
+    {
+      "src": "screenshots/Christmas-Santa.png",
+      "type": "image/png",
+      "sizes": "793x1152",
+      "label": "A simple Santa screenshot"
+    },
+    {
+      "src": "screenshots/Christmas-Snowball.png",
+      "type": "image/png",
+      "sizes": "793x1152",
+      "label": "A simple Snowball screenshot"
+    },
+    {
+      "src": "screenshots/Christmas-Snowball-wide.png",
+      "type": "image/png",
+      "sizes": "1378x731",
+      "form_factor": "wide",
+      "label": "A simple wide Snowball screenshot"
+    }
+  ],
   "splash_pages": null
 }
