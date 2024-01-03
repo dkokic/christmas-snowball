@@ -17,27 +17,33 @@ window.onload = function() {
   }
   setTimeout(() => { document.body.style.backgroundColor = "black"; animloop() }, 10000);
   setInterval(() => { SYSTEM.activate(); setTimeout(SYSTEM.deactivate, 7000) }, 60000);
-
 };
 
 
 function renderCharacter (character) {
-  switch (character) {
-    case '0': return [[-10, -30], [0, -30], [10, -30], [-20, -20], [20, -20], [-20, -10], [10, -10], [20, -10], [-20, 0], [0, 0], [20, 0], [-20, 10], [-10, 10], [20, 10], [-20, 20], [20, 20], [-10, 30], [0, 30], [10, 30]];
-    case '1': return [[0, -30], [-10, -20], [0, -20], [0, -10], [0, 0], [0, 10], [0, 20], [-10, 30], [0, 30], [10, 30]];
-    case '2': return [[-10, -30], [0, -30], [10, -30], [-20, -20], [20, -20], [-20, -10], [20, -10], [10, 0], [0, 10], [-10, 20], [-20, 30], [-10, 30], [0, 30], [10, 30], [20, 30]];
-    case '3': return [[-10, -30], [0, -30], [10, -30], [-20, -20], [20, -20], [20, -10], [0, 0], [10, 0], [20, 10], [-20, 20], [20, 20], [-10, 30], [0, 30], [10, 30]];
-    case '8': return [[-10, -30], [0, -30], [10, -30], [-20, -20], [20, -20], [-20, -10], [20, -10], [-10, 0], [0, 0], [10, 0], [-20, 10], [20, 10], [-20, 20], [20, 20], [-10, 30], [0, 30], [10, 30]];
-    case '9': return [[-10, -30], [0, -30], [10, -30], [-20, -20], [20, -20], [-20, -10], [20, -10], [-10, 0], [0, 0], [10, 0], [20, 0], [20, 10], [-20, 20], [20, 20], [-10, 30], [0, 30], [10, 30]];
-    default: return [];
+  const digits = '0123456789';
+  const sprites =[
+    [' ### ', '  #  ', ' ### ', ' ### ', '   # ', '#### ', ' ### ', '#####', ' ### ', ' ### '],
+    ['#   #', ' ##  ', '#   #', '#   #', '  ## ', '#    ', '#    ', '    #', '#   #', '#   #'],
+    ['#  ##', '  #  ', '    #', '    #', ' # # ', '#### ', '#### ', '   # ', '#   #', '#   #'],
+    ['# # #', '  #  ', '   # ', '  ## ', '#  # ', '    #', '#   #', '  #  ', ' ### ', '#   #'],
+    ['##  #', '  #  ', '  #  ', '    #', '#####', '    #', '#   #', '  #  ', '#   #', ' ####'],
+    ['#   #', '  #  ', ' #   ', '#   #', '   # ', '#   #', '#   #', '  #  ', '#   #', '    #'],
+    [' ### ', ' ### ', '#####', ' ### ', '  ###', ' ### ', ' ### ', '  #  ', ' ### ', ' ### '],
+  ];
+  const index = digits.indexOf(character);
+  if (index >= 0) {
+    const result = sprites.flatMap(sprite => sprite[index]).flatMap((line, y) => line.split('').map((c, x) => c === '#' ? [(x - 2) * 10, (y - 3) * 10] : null).filter(v => v));
+    return result;
   }
+  return [];
 }
 
 SYSTEM = function (now) {
   var cnv = document.getElementById('canvas');
   var ctx = cnv.getContext('2d');
 
-  var yearCoords = now.getFullYear().toString().split('').map(renderCharacter).flatMap((coords, i) => coords.map(coord => [coord[0] - 75 + 50 * i, coord[1] + 135]));
+  var yearCoords = now.getFullYear().toString().split('').map(renderCharacter).flatMap((coords, i, a) => coords.map(([x, y]) => [x - 30 * (a.length - 1) + 60 * i, y + 125]));
 
   var Parent = function (childQuant, radius, xPos, yPos) {
     this.radius   = radius;
